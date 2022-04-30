@@ -41,15 +41,21 @@ const Work = () => {
       <h2 className="head-text">My Creative <span>Portfolio</span> Section</h2>
 
       <div className="app__work-filter">
-        {['UI/UX', 'Web App', 'Mobile App', 'React JS', 'All'].map((item, index) => (
-          <div
-            key={index}
-            onClick={() => handleWorkFilter(item)}
-            className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`}
-          >
-            {item}
-          </div>
-        ))}
+        {[
+          'All', 'Web App', 'H5 App', 'MERN Stack',
+          'Vue.js', 'React.js', 'Node.js',
+          'Nuxt.js', 'Next.js', 'Nest.js',
+          'Bootstrap', 'Material UI', 'i18n'
+        ]
+          .map((item, index) => (
+            <div
+              key={index}
+              onClick={() => handleWorkFilter(item)}
+              className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`}
+            >
+              {item}
+            </div>
+          ))}
       </div>
 
       <motion.div

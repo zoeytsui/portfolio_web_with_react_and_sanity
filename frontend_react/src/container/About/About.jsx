@@ -18,7 +18,15 @@ const About = () => {
 
   return (
     <>
-      <h2 className="head-text">I Know that <span>Good Design</span> <br />means  <span>Good Business</span></h2>
+      <div className="badge-cmp app__flex">
+        <span>👋</span>
+        <div style={{ marginLeft: 20 }}>
+          <p className="p-text">Hello, I am</p>
+          <h1 className="head-text">Zoey</h1>
+        </div>
+      </div>
+
+      <h2 className="head-text">I Know that <span>Good Dev</span> <br />means  <span>Good Business</span></h2>
 
       <div className="app__profiles">
         {abouts.map((about, index) => (
