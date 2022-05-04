@@ -21,6 +21,10 @@
   align-items: center;
   position: absolute;
 
+  @media screen and (max-width: 768px) {
+    left: 40%;
+  }
+
   img {
     width: 90px;
     height: 100%;
