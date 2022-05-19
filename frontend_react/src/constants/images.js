@@ -1,9 +1,6 @@
 import email from '../assets/email.png';
 import mobile from '../assets/mobile.png';
 import api from '../assets/api.png';
-import flutter from '../assets/flutter.png';
-import graphql from '../assets/graphql.png';
-import redux from '../assets/redux.png';
 
 import about01 from '../assets/about01.png';
 import about02 from '../assets/about02.png';
@@ -17,9 +14,6 @@ const ConstantsImages = {
   email,
   mobile,
   api,
-  flutter,
-  graphql,
-  redux,
   about01,
   about02,
   about03,
