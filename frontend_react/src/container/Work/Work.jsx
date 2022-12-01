@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { AiFillEye, AiFillGithub } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
@@ -11,6 +11,27 @@ const Work = () => {
   const [filterWork, setFilterWork] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
+  const [showModal, setShowModal] = useState(false)
+  const [imageData, setImageData] = useState({
+    url:'',
+    alt:''
+  })
+
+  const handleClickImg = useCallback((img, alt) => {
+    setShowModal(true)
+    setImageData({url:img, alt:alt})
+  },[])
+
+  const ImageModal = useMemo(()=>{
+    return showModal
+      ? <div 
+          className='ImageModal'
+          onClick={()=>setShowModal(false)} 
+        >
+          <img src={imageData.url} alt={imageData.alt} />
+        </div> 
+      : null
+  },[showModal, imageData])
 
   useEffect(() => {
     const query = '*[_type == "works"]';
@@ -19,7 +40,7 @@ const Work = () => {
       setWorks(data);
       setFilterWork(data);
     });
-  }, []);
+  }, [showModal]);
 
   const handleWorkFilter = (item) => {
     setActiveFilter(item);
@@ -65,9 +86,7 @@ const Work = () => {
       >
         {filterWork.map((work, index) => (
           <div className="app__work-item app__flex" key={index}>
-            <div
-              className="app__work-img app__flex"
-            >
+            <div className="app__work-img app__flex" onClick={()=>handleClickImg(urlFor(work.imgUrl), work.name)}>
               <img src={urlFor(work.imgUrl)} alt={work.name} />
 
               <motion.div
@@ -110,6 +129,9 @@ const Work = () => {
           </div>
         ))}
       </motion.div>
+
+      {ImageModal}
+    
     </>
   );
 };

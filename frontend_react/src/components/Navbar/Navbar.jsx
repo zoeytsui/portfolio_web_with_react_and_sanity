@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { motion } from 'framer-motion';
+import { BsFileEarmarkPerson,BsLinkedin, BsGithub, BsWhatsapp } from 'react-icons/bs';
 
 import { images } from '../../constants';
 import './Navbar.scss';
@@ -31,6 +32,7 @@ const Navbar = () => {
             transition={{ duration: 0.85, ease: 'easeOut' }}
           >
             <HiX onClick={() => setToggle(false)} />
+              {/* <div> */}
             <ul>
               {['about', 'work', 'skills', 'contact'].map((item) => (
                 <li key={item}>
@@ -40,6 +42,20 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
+              <span>
+                <a href='https://bit.ly/3Fj1SNs' target='_blank' rel="noreferrer">
+                  <BsFileEarmarkPerson />
+                </a>
+                <a href='https://hk.linkedin.com/in/zoey-xu-0799451b0' target='_blank' rel="noreferrer">
+                  <BsLinkedin />
+                </a>
+                <a href='https://github.com/zoeytsui' target='_blank' rel="noreferrer">
+                  <BsGithub />
+                </a>
+                <a href='https://api.whatsapp.com/send?phone=51114191&text=Take%20a%20coffee%20and%20chat%20with%20me' target='_blank' rel="noreferrer">
+                  <BsWhatsapp />
+              </a>
+              </span>
           </motion.div>
         )}
       </div>
