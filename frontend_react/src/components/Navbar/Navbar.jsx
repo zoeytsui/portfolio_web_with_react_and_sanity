@@ -32,16 +32,15 @@ const Navbar = () => {
             transition={{ duration: 0.85, ease: 'easeOut' }}
           >
             <HiX onClick={() => setToggle(false)} />
-              {/* <div> */}
-            <ul>
-              {['about', 'work', 'skills', 'contact'].map((item) => (
-                <li key={item}>
-                  <a href={`#${item}`} onClick={() => setToggle(false)}>
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+              <ul>
+                {['about', 'work', 'skills', 'contact'].map((item) => (
+                  <li key={item}>
+                    <a href={`#${item}`} onClick={() => setToggle(false)}>
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
               <span>
                 <a href='https://bit.ly/3Fj1SNs' target='_blank' rel="noreferrer">
                   <BsFileEarmarkPerson />

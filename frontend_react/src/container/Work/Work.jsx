@@ -16,6 +16,12 @@ const Work = () => {
     url:'',
     alt:''
   })
+  
+  const disableScrolling = ()=>{
+    var x=window.scrollX;
+    var y=window.scrollY;
+    window.onscroll=function(){window.scrollTo(x, y);};
+}
 
   const handleClickImg = useCallback((img, alt) => {
     setShowModal(true)
@@ -23,6 +29,9 @@ const Work = () => {
   },[])
 
   const ImageModal = useMemo(()=>{
+    // document.getElementById('scrollbar').style.display = 'block';
+    // disableScrolling()
+    document.body.style.overflow = "hidden"
     return showModal
       ? <div 
           className='ImageModal'
@@ -30,7 +39,7 @@ const Work = () => {
         >
           <img src={imageData.url} alt={imageData.alt} />
         </div> 
-      : null
+      : document.body.style.overflow = "auto"
   },[showModal, imageData])
 
   useEffect(() => {

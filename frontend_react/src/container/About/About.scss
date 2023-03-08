@@ -27,14 +27,14 @@
     object-fit: cover;
   }
 
-  @media screen and (min-width: 2000px) {
-    width: 370px;
-    margin: 2rem 4rem;
+  // @media screen and (min-width: 2000px) {
+  //   width: 370px;
+  //   margin: 2rem 4rem;
 
-    img {
-      height: 320px;
-    }
-  }
+  //   img {
+  //     height: 320px;
+  //   }
+  // }
 }
 
 .badge-cmp {
@@ -50,8 +50,8 @@
   span {
     font-size: 2.5rem;
 
-    @media screen and (min-width: 2000px) {
-      font-size: 5rem;
-    }
+    // @media screen and (min-width: 2000px) {
+    //   font-size: 5rem;
+    // }
   }
 }
