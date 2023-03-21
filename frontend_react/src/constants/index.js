@@ -1,3 +1,3 @@
-import images from './images';
-
-export { images };
+import images from "./images";
+import tags from "./tags";
+export { images, tags };

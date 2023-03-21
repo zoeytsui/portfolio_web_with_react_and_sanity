@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { urlFor, client } from '../../client';
 import './Work.scss';
+import { tags } from '../../constants';
 
 const Work = () => {
   const [works, setWorks] = useState([]);
@@ -17,20 +18,12 @@ const Work = () => {
     alt:''
   })
   
-  const disableScrolling = ()=>{
-    var x=window.scrollX;
-    var y=window.scrollY;
-    window.onscroll=function(){window.scrollTo(x, y);};
-}
-
   const handleClickImg = useCallback((img, alt) => {
     setShowModal(true)
     setImageData({url:img, alt:alt})
   },[])
 
   const ImageModal = useMemo(()=>{
-    // document.getElementById('scrollbar').style.display = 'block';
-    // disableScrolling()
     document.body.style.overflow = "hidden"
     return showModal
       ? <div 
@@ -71,13 +64,7 @@ const Work = () => {
       <h2 className="head-text">My Creative <span>Portfolio</span> Section</h2>
 
       <div className="app__work-filter">
-        {[
-          'All', 'Web App', 'H5 App', 'MERN Stack',
-          'Vue.js', 'React.js', 'Node.js',
-          'Nuxt.js', 'Next.js', 'Nest.js', 'Gatsby.js',
-          'Bootstrap', 'Material UI','AntDesign', 'i18n', 'Redux'
-        ]
-          .map((item, index) => (
+        {tags.map((item, index) => (
             <div
               key={index}
               onClick={() => handleWorkFilter(item)}
