@@ -24,7 +24,7 @@ const Work = () => {
   },[])
 
   const ImageModal = useMemo(()=>{
-    document.body.style.overflow = "hidden"
+    document.body.style.overflow = showModal ? "hidden" : "auto"
     return showModal
       ? <div 
           className='ImageModal'
@@ -32,7 +32,7 @@ const Work = () => {
         >
           <img src={imageData.url} alt={imageData.alt} />
         </div> 
-      : document.body.style.overflow = "auto"
+      : null
   },[showModal, imageData])
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const Work = () => {
                 transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
                 className="app__work-hover app__flex"
               >
-                <a href={work.projectLink} target="_blank" rel="noreferrer">
+                {work.projectLink&&<a href={work.projectLink} target="_blank" rel="noreferrer">
 
                   <motion.div
                     whileInView={{ scale: [0, 1] }}
@@ -100,8 +100,8 @@ const Work = () => {
                   >
                     <AiFillEye />
                   </motion.div>
-                </a>
-                <a href={work.codeLink} target="_blank" rel="noreferrer">
+                </a>}
+                {work.codeLink&&<a href={work.codeLink} target="_blank" rel="noreferrer">
                   <motion.div
                     whileInView={{ scale: [0, 1] }}
                     whileHover={{ scale: [1, 0.90] }}
@@ -110,7 +110,7 @@ const Work = () => {
                   >
                     <AiFillGithub />
                   </motion.div>
-                </a>
+                </a>}
               </motion.div>
             </div>
 
