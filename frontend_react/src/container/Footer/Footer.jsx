@@ -77,7 +77,7 @@ const Footer = () => {
       )}
 
       <div className="copyright">
-        <p className="p-text">@{new Date().getFullYear()} ZOEY</p>
+        <p className="p-text">@2021 Zoey Xu</p>
         <p className="p-text">All rights reserved</p>
       </div>
     </>
