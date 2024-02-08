@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import { images } from '../../constants';
 import { AppWrap, MotionWrap } from '../../wrapper';
@@ -9,6 +9,9 @@ const Footer = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showEmailValidateError, setShowEmailValidateError] = useState(false)
+  const [showMessageValidateError, setShowMessageValidateError] = useState(false)
+  const [showNameValidateError, setShowNameValidateError] = useState(false)
 
   const { username, email, message } = formData;
 
@@ -17,8 +20,47 @@ const Footer = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const EmailValidateError = useMemo(()=>{
+    return showEmailValidateError
+    ? <p className='p-text-error'>Please input your corrected email address</p>
+    : null
+  },[showEmailValidateError])
+
+  const MessageValidateError = useMemo(()=>{
+    return showMessageValidateError
+    ? <p className='p-text-error'>What's your message?</p>
+    : null
+  },[showMessageValidateError])
+
+  const NameValidateError = useMemo(()=>{
+    return showNameValidateError
+    ? <p className='p-text-error'>Please leave your name</p>
+    : null
+  },[showNameValidateError])
+
   const handleSubmit = () => {
     setLoading(true);
+
+    if (!validateEmail(formData.email)) {
+      setShowEmailValidateError(true)
+      setLoading(false)
+      return
+    }
+    if (!formData.username) {
+      setShowNameValidateError(true)
+      setLoading(false)
+      return
+    }
+    if (!formData.message) {
+      setShowMessageValidateError(true)
+      setLoading(false)
+      return
+    }
 
     const contact = {
       _type: 'contact',
@@ -54,9 +96,11 @@ const Footer = () => {
           <div className="app__flex">
             <input className="p-text" type="text" placeholder="Your Name" name="username" value={username} onChange={handleChangeInput} />
           </div>
+          {NameValidateError}
           <div className="app__flex">
             <input className="p-text" type="email" placeholder="Your Email" name="email" value={email} onChange={handleChangeInput} />
           </div>
+            {EmailValidateError}
           <div>
             <textarea
               className="p-text"
@@ -66,6 +110,7 @@ const Footer = () => {
               onChange={handleChangeInput}
             />
           </div>
+          {MessageValidateError}
           <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
         </div>
       ) : (

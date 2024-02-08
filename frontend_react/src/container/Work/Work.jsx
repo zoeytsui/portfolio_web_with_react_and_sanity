@@ -36,6 +36,7 @@ const Work = () => {
   },[showModal, imageData])
 
   useEffect(() => {
+    // TODO: implement image pinch or zoom feature 
     const query = '*[_type == "works"]';
 
     client.fetch(query).then((data) => {
@@ -68,7 +69,7 @@ const Work = () => {
             <div
               key={index}
               onClick={() => handleWorkFilter(item)}
-              className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`}
+              className={`app__work-filter-item app__flex__works p-text ${activeFilter === item ? 'item-active' : ''}`}
             >
               {item}
             </div>
@@ -80,23 +81,22 @@ const Work = () => {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__work-portfolio"
       >
-        {filterWork.map((work, index) => (
-          <div className="app__work-item app__flex" key={index}>
-            <div className="app__work-img app__flex" onClick={()=>handleClickImg(urlFor(work.imgUrl), work.name)}>
+        {filterWork.sort((a, b) => new Date(b._updatedAt) - new Date(a._updatedAt)).map((work, index) => (
+          <div className="app__work-item app__flex__works" key={index}>
+            <div className="app__work-img app__flex__works" onClick={()=>handleClickImg(urlFor(work.imgUrl), work.name)}>
               <img src={urlFor(work.imgUrl)} alt={work.name} />
 
               <motion.div
                 whileHover={{ opacity: [0, 1] }}
                 transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
-                className="app__work-hover app__flex"
+                className="app__work-hover app__flex__works"
               >
                 {work.projectLink&&<a href={work.projectLink} target="_blank" rel="noreferrer">
-
                   <motion.div
                     whileInView={{ scale: [0, 1] }}
                     whileHover={{ scale: [1, 0.90] }}
                     transition={{ duration: 0.25 }}
-                    className="app__flex"
+                    className="app__flex__works"
                   >
                     <AiFillEye />
                   </motion.div>
@@ -106,7 +106,7 @@ const Work = () => {
                     whileInView={{ scale: [0, 1] }}
                     whileHover={{ scale: [1, 0.90] }}
                     transition={{ duration: 0.25 }}
-                    className="app__flex"
+                    className="app__flex__works"
                   >
                     <AiFillGithub />
                   </motion.div>
@@ -114,11 +114,11 @@ const Work = () => {
               </motion.div>
             </div>
 
-            <div className="app__work-content app__flex">
+            <div className="app__work-content app__flex__works">
               <h4 className="bold-text">{work.title}</h4>
               <p className="p-text" style={{ marginTop: 10 }}>{work.description}</p>
 
-              <div className="app__work-tag app__flex">
+              <div className="app__work-tag app__flex__works">
                 <p className="p-text">{work.tags[0]}</p>
               </div>
             </div>
