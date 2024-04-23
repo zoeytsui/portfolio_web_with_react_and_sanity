@@ -15,5 +15,7 @@ const tags = [
   "AntDesign",
   "i18n",
   "Redux",
+  "Vuetify",
+  "Pinia",
 ];
 export default tags;
